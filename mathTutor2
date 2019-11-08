@@ -1,0 +1,242 @@
+/*
+names: Juan Garza & JaeYun Jo
+date: novemeber 6, 2019
+desc: Math Tutor 2
+*/
+
+#include <iostream> 
+#include <cstdlib>
+#include <ctime>
+#include <iomanip>
+
+using namespace std;
+
+//function prototype
+void menu(int& choiceA);
+void addition(int& right, int& total);
+void multiplication(int& right, int& total);
+void division(int& right, int& total);
+void subtraction(int& right, int& total); 
+void compliment();
+void encourage();
+
+// main function
+int main(){
+  int choice; // variable for menu selection
+  int right = 0; // tally for correct answers
+  int total = 0; // tally for total questions answered
+
+  // gives us our randomly generated numbers for questions, compliments and encouragment.
+  srand(time(0)); 
+
+  while (choice != 5){ // validates input from user to be between 1 & 5
+    menu(choice);
+    
+    switch (choice){
+      case 1:
+        addition (right, total);
+        break;
+      case 2:
+        multiplication(right, total);
+        break;
+      case 3:
+        division(right, total);
+        break;
+      case 4:
+        subtraction(right, total);
+        break;
+      default:
+        break;
+    }
+  }
+
+  // displays how many questions were right out of all the questions.
+  cout << "Right answers: " << right << "\nTotal: " << total << endl; 
+
+  // displays your correct answers in percentage.
+  cout << "Your score is " << 100 / total * right << endl;
+
+  cin.get();
+  cin.ignore();
+
+  return 0;
+}
+
+// menu function for choice selection
+void menu(int& choice){
+
+  cout << endl; // spaces text
+  cout << "1) Addition" << endl;
+  cout << "2) Multiplication" << endl;
+  cout << "3) Division" << endl;
+  cout << "4) Subtraction" << endl;
+  cout << "5) Quit" << endl;
+
+  cout << "Enter your choice: " << endl;
+  cin >> choice;
+  cout << endl; // spaces text
+
+  while((choice < 1) || (choice > 5)){ //validates input from user to be between 1 & 5.
+    cout << endl; // spaces text
+    cout << "Invalid Input\n" << endl;
+    cout << endl; // spaces text
+    cout << "1) Addition" << endl;
+    cout << "2) Multiplication" << endl;
+    cout << "3) Division" << endl;
+    cout << "4) Subtraction" << endl;
+    cout << "5) Quit" << endl;
+
+    cout << "Enter your choice(1 - 5): " << endl;
+    cin >> choice;
+    cout << endl; // spaces text
+  }
+
+}
+
+// addition function for choice 1
+void addition(int& right, int& total){
+  cout << "Addition" << endl; //displays current function
+
+  for (int i = 1; i <= 5; i++){ // loops questions 5 times for user
+    int answer; // local variable
+    int numA = rand() % 12 + 1; //first number
+    int numB = rand() % 12 + 1; //second number
+
+    cout << "\t" << numA << "\n" << "+\t" << numB << endl; // format displayed for questions
+    cin >> answer; // users answer
+
+    if (answer == numA + numB){ //checks if answer is correct
+      compliment(); // gives compliment
+      right++; // tallies correct amount to display when exiting.
+    }
+    if (answer != numA + numB){ // checks if answer is Wrong
+      encourage(); // gives encouragment
+    }
+    
+    total++; // tallies total to be divided by correct amount when exiting.
+  }
+}
+
+//multiplication function for choice 2
+void multiplication(int& right, int& total){
+  cout << "Multiplication" << endl; //displays current function
+
+  for (int i = 1; i <= 5; i++){ // loops questions 5 times for user
+    int answer; // local variable
+    int numA = rand() % 12 + 1; //first number
+    int numB = rand() % 12 + 1; //second number
+
+    cout << "\t" << numA << "\n" << "X\t" << numB << endl; // format displayed for questions
+    cin >> answer; // users answer
+
+    if (answer == numA * numB){ //checks if answer is correct
+      compliment(); // gives compliment
+      right++; // tallies correct amount to display when exiting.
+    }
+    if (answer != numA * numB){ // checks if answer is Wrong
+      encourage(); // gives encouragment
+    }
+    total++; // tallies total to be divided by correct amount when exiting.
+  }
+}
+
+//division function for choice 3
+void division(int& right, int& total){
+  cout << "Division" << endl; //displays current function
+
+  for (int i = 1; i <= 5; i++){ // loops questions 5 times for user
+    int answer; // local variable
+    int numA = numA = rand() % 20 + 1; //first number
+    int numB = numB = rand() % 10 + 1; //second number
+
+    while (numA % numB != 0){ //while first number is not divisible by 0
+      numA = rand() % 20 + 1;//first number
+      numB = rand() % 10 + 1;//second number
+    }
+
+    cout << "\t" << numA << "\n" << "÷\t" << numB << endl; // format displayed for questions
+    cin >> answer; // users answer
+
+    if (answer == numA / numB){ //checks if answer is correct
+      compliment(); // gives compliment
+      right++; // tallies correct amount to display when exiting.
+    }
+    if (answer != numA / numB){ // checks if answer is Wrong
+      encourage(); // gives encouragment
+    }
+    total++; // tallies total to be divided by correct amount when exiting.
+  }
+}
+
+//subtraction function for choice 4
+void subtraction(int& right, int& total){ 
+  cout << "Subtraction" << endl; //displays current function
+
+  for (int i = 1; i <= 5; i++){ // loops questions 5 times for user
+    int answer; // local variable
+    int numA = rand() % 12 + 1; //first number
+    int numB = rand() % 12 + 1; //second number
+
+    while (numA < numB){ //while first number is smaller than second number 
+    //(to prevent negatives)
+      numA = rand() % 12 + 1;
+      numB = rand() % 12 + 1;
+    }
+
+    cout << "\t" << numA << "\n" << "-\t" << numB << endl; // format displayed for questions
+    cin >> answer; // users answer
+
+    if (answer == numA - numB){ //checks if answer is correct
+      compliment(); // gives compliment
+      right++; // tallies correct amount to display when exiting.
+    }
+    if (answer != numA - numB){ // checks if answer is Wrong
+      encourage(); // gives encouragment
+    }
+    total++; // tallies total to be divided by correct amount when exiting.
+  }
+}
+
+// compliment function for when answer is correct.
+void compliment(){
+
+int chance = rand() % 4 + 1; // randomly chooses between 1 & 4
+
+switch (chance){ // compliment options
+        case 1:
+        cout << "Congratulations, you're correct. \n" << endl;
+        break;
+      case 2:
+        cout << "Amazing, you did it. \n" << endl;
+        break;
+      case 3:
+        cout << "Nice Job. \n" << endl;
+        break;
+      case 4:
+        cout << "keep up the good work. \n" << endl;
+        break;
+  }    
+
+}
+
+// encourage function for when answer is wrong.
+void encourage(){
+
+int chance = rand() % 4 + 1; // randomly chooses between 1 & 4
+
+switch (chance){ //encouragment options
+        case 1:
+        cout << "Keep Trying, you'll make it. \n" << endl;
+        break;
+      case 2:
+        cout << "Try Again. \n" << endl;
+        break;
+      case 3:
+        cout << "Not Quite. \n" << endl;
+        break;
+      case 4:
+        cout << "So Close. \n" << endl;
+        break;
+  }    
+
+}
