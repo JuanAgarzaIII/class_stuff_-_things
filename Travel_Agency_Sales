@@ -1,0 +1,230 @@
+/*
+fixed
+names: Juan Garza & JaeYun Jo
+date: novemeber 13, 2019
+desc: High Adventure Travel Agency
+*/
+
+#include <iostream> 
+#include <iomanip>
+
+using namespace std;
+
+// function prototype
+char menu();
+void climbing();
+void scuba();
+void skyDive();
+void spelunk();
+
+int main(){
+  char choice[1];
+  while(choice[0] != 'E'){
+    choice[0] = menu();
+    if (choice[0] == 'A'){
+      climbing();
+    }
+    else if (choice[0] == 'B'){
+      scuba();
+    }
+    else if (choice[0] == 'C'){
+      skyDive();
+    }
+    else if (choice[0] == 'D'){
+      spelunk();
+    }
+    else if (choice[0] == 'E'){
+      break;
+    }
+    else{
+      cout << "Invalid Input" << endl;
+    }
+
+  }
+
+  cin.get();
+  cin.ignore();
+
+  return 0;
+}
+// menu function for choice selection
+char menu(){
+
+  char choice[] = {'0'};
+
+  cout << endl; // spaces text
+  cout << "A) Climbing" << endl;
+  cout << "B) Scuba" << endl;
+  cout << "C) Sky Dive" << endl;
+  cout << "D) Spelunk" << endl;
+  cout << "E) Quit" << endl;
+
+  cout << "Enter your choice: " << endl;
+  cin >> choice[0];
+  cout << endl; // spaces text
+
+  choice[0] = toupper(choice[0]);
+  return choice[0];
+}
+
+
+void climbing(){ // good to go (3 day trip)
+
+  int people; // total people
+  int rental_cost; // rental costs for 3 days
+  int people_instruction; // how many need instruction
+  int people_rental; // how many need rentals
+  int instruction = 100; // instruction cost
+  int equipment = 40; // rental cost
+  int days = 3; // number of days
+  double base_charge = 350; // base cost
+  double discount = 0.9; // discounted cost calculation variable
+  double total = 0; // total cost counter
+
+  cout << "Devil's Courthouse Adventure Weekend" << endl;
+  cout << "How many people will do climbing?" << endl;
+  cin >> people;
+
+  if (people >= 5){
+    base_charge = (base_charge * discount)*people;
+  }
+  else{
+    base_charge = base_charge * people;
+  }
+
+  cout << "how many people want instructions: ";
+  cin >> people_instruction;
+
+  instruction = instruction * people_instruction;
+
+    cout << "how many people need rentals?: ";
+  cin >> people_rental;
+
+  rental_cost = people_rental * days * equipment;
+
+  total = base_charge + instruction + rental_cost;
+
+  cout << "Number in Party: " << setw(4) << people << endl;
+  cout << "Base Charge : " << setw(7) << "$" << base_charge << endl;
+  cout << "Instruction Charge: " << "$" << instruction << endl;
+  cout << "Equipment Charge: " << setw(3) << "$" << rental_cost << endl;
+  cout << "Total Charge: " << setw(7) << "$" << total << endl;
+  
+}
+
+void scuba(){ // good to go (3 day trip)
+
+  int people; // number of people going
+  int people_instruction; // how many need instruction
+  int instruction_cost; // number of instructions needed
+  double total; // total cost
+  double base_charge = 1000; // base cost
+  int instruction = 100; // instruction cost
+  double discount = 0.9; // discounted cost calculation variable
+
+  cout << "Scuba Bahama" << endl;
+  cout << "How many people will scuba?" << endl;
+  cin >> people;
+
+  if (people >= 5){
+    base_charge = (base_charge * discount) * people;
+  }
+  else{
+    base_charge = base_charge * people;
+  }
+
+
+  cout << "how many people want instructions?" << endl;
+  cin >> people_instruction;
+
+  instruction_cost = people_instruction * instruction;
+
+  total = base_charge + instruction_cost;
+
+  cout << "Number in Party: " << setw(4) << people << endl;
+  cout << "Base Charge : " << setw(7) << "$" << base_charge << endl;
+  cout << "Instruction Charge: " << "$" << instruction_cost << endl;
+  cout << "Total Charge: " << setw(7) << "$" << total << endl;
+
+  
+}
+
+void skyDive(){ // needs work: calculations kinda off ( 4 day trip )
+  int people; // number of people going
+  double base_charge = 700; // base cost
+  int lodging_basic = 65; // cost of basic lodging
+  int lodging_luxery = 120; // cost of luxery lodging
+  int lodging_people1; // basic lodging people variable
+  int lodging_people2; // luxery lodging people variable
+  int lodging_cost1; // basic lodging calculation variable
+  int lodging_cost2; // luxery lodging calculation variable
+  int lodging_total; // lodging total cost
+  int days = 4; // number of days on trip
+  double discount = 0.9; // discounted cost calculation variable
+  double total; // total cost
+  cout << "Sky Dive Colorado" << endl;
+  cout << "How many people will be sky diving?" << endl;
+  cin >> people;
+
+  if (people >= 5){
+    base_charge = (base_charge * discount) * people;
+  }
+  else{
+    base_charge = base_charge * people;
+  }
+
+  cout << "how many want the basic lodge?: ";
+  cin >> lodging_people1;
+
+  lodging_cost1 = (lodging_people1 * lodging_basic ) * days;
+
+  cout << "how many want the luxery lodge?: ";
+  cin >> lodging_people2;
+
+  lodging_cost2 = (lodging_people2 * lodging_luxery) * days;
+
+  lodging_total = lodging_cost1 + lodging_cost2;
+
+  total = lodging_total + base_charge;
+
+  cout << "Number in Party: " << setw(7) << people << endl;
+  cout << "Base Charge : " << setw(10) << "$" << base_charge << endl;
+  cout << "Basit lodging Charge: " << setw(2) << "$" << lodging_cost1 << endl;
+  cout << "Luxury lodging Charge: " << "$" << lodging_cost2 << endl;
+  cout << "Total Charge: " << setw(10) << "$" << total << endl;
+}
+
+void spelunk(){ // 8 day trip
+  int people; // total people
+  int rental_cost; // rental costs for 8 days
+  int people_rental; // how many need rentals
+  int equipment = 40; // rental cost
+  int days = 8; // number of days
+  double base_charge = 700; // base cost
+  double discount = 0.9; // discounted cost calculation variable
+  double total = 0; // total cost counter
+
+  cout << "Barron Cliff Spelunk" << endl;
+  cout << "How many people will do Spelunk?" << endl;
+  cin >> people;
+
+  if (people >= 5){
+    base_charge = (base_charge * discount)*people;
+  }
+  else{
+    base_charge = base_charge * people;
+  }
+  
+  cout << "How many equipments do you want to rent? ";
+  cin >> people_rental;
+  
+  rental_cost = people_rental * days;
+
+  total = base_charge + (equipment * rental_cost);
+
+  cout << "Number in Party: " << setw(2) << people << endl;
+  cout << "Base Charge : " << setw(5) << "$" << base_charge << endl;
+  cout << "Equipment Charge: " << setw(1) << "$" << rental_cost << endl;
+  cout << "Total Charge: " << setw(5) << "$" << total << endl;
+
+}
